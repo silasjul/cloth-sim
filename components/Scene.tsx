@@ -6,6 +6,7 @@ import { Environment, OrbitControls } from '@react-three/drei'
 import { ReinhardToneMapping } from 'three'
 import Cloth from '@/components/cloth/Cloth'
 import { useLevaStore } from '@/stores/levaStore'
+import { useLoadingStore } from '@/stores/loadingStore'
 
 function Exposure() {
   useFrame(({ gl }) => {
@@ -18,7 +19,10 @@ function Exposure() {
 export default function Scene() {
   const [dragging, setDragging] = useState(false)
   const scene = useLevaStore((s) => s.scene)
+  const mounted = useLoadingStore((s) => s.phase !== 'image')
   const rotation = (scene.envRotation * Math.PI) / 180
+
+  if (!mounted) return null
 
   return (
     <Canvas

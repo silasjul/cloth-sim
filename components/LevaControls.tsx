@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Leva } from 'leva';
+import { useLoadingStore } from '@/stores/loadingStore';
 import { useFabricTweaks } from '@/hooks/leva/useFabricTweaks';
 import { useClothTweaks } from '@/hooks/leva/useClothTweaks';
 import { usePhysicsTweaks } from '@/hooks/leva/usePhysicsTweaks';
@@ -16,6 +17,7 @@ export default function LevaControls() {
   useSceneTweaks();
 
   const [hidden, setHidden] = useState(false);
+  const loaded = useLoadingStore((s) => s.phase === 'done');
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -30,5 +32,5 @@ export default function LevaControls() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  return <Leva hidden={hidden} />;
+  return <Leva hidden={hidden || !loaded} />;
 }

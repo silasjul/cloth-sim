@@ -17,7 +17,15 @@ export function useClothDrag(
   onDragChange: (dragging: boolean) => void
 ) {
   const camera = useThree((s) => s.camera);
+  const get = useThree((s) => s.get);
   const drag = useRef<DragState | null>(null);
+
+  // disabling via React state is one render too late — OrbitControls sees the
+  // pointerdown synchronously, so it must be switched off in the same tick
+  const setControlsEnabled = (enabled: boolean) => {
+    const controls = get().controls as { enabled: boolean } | null;
+    if (controls) controls.enabled = enabled;
+  };
 
   useEffect(() => () => void (document.body.style.cursor = 'auto'), []);
 
@@ -48,6 +56,7 @@ export function useClothDrag(
       point: e.point.clone(),
     };
     pinned[best] = 1;
+    setControlsEnabled(false);
     onDragChange(true);
     document.body.style.cursor = 'grabbing';
     (e.target as Element).setPointerCapture(e.pointerId);
@@ -71,6 +80,7 @@ export function useClothDrag(
     if (!d || !cloth) return;
     if (d.index < cloth.count) cloth.pinned[d.index] = d.wasPinned;
     drag.current = null;
+    setControlsEnabled(true);
     onDragChange(false);
     document.body.style.cursor = 'grab';
     (e.target as Element).releasePointerCapture(e.pointerId);
