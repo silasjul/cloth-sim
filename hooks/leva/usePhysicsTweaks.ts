@@ -11,10 +11,10 @@ export function usePhysicsTweaks() {
   const [values, set] = useControls(
     'Physics',
     () => ({
-      gravity: { value: PHYSICS_DEFAULTS.gravity, min: 0, max: 25, step: 0.1 },
-      damping: { value: PHYSICS_DEFAULTS.damping, min: 0, max: 0.05, step: 0.001 },
-      stiffness: { value: PHYSICS_DEFAULTS.stiffness, min: 1, max: 20, step: 1 },
-      bend: { value: PHYSICS_DEFAULTS.bend, min: 0, max: 1, step: 0.05, label: 'bend stiffness' },
+      weight: { value: PHYSICS_DEFAULTS.weight, min: 0.05, max: 1.5, step: 0.01, label: 'weight (kg/m²)' },
+      stiffness: { value: PHYSICS_DEFAULTS.stiffness, min: 0, max: 1, step: 0.01 },
+      bend: { value: PHYSICS_DEFAULTS.bend, min: 0, max: 1, step: 0.01, label: 'bend stiffness' },
+      drag: { value: PHYSICS_DEFAULTS.drag, min: 0, max: 1, step: 0.01, label: 'air drag' },
     }),
     { collapsed: true }
   );

@@ -21,13 +21,11 @@ export function useClothSim(meshRef: RefObject<THREE.Mesh | null>) {
     const cloth = clothRef.current;
 
     const geom = meshRef.current!.geometry;
-    const normalAttr = geom.attributes.normal as THREE.BufferAttribute;
-    const normals = normalAttr.count === cloth.count ? (normalAttr.array as Float32Array) : null;
 
     timeAcc.current = Math.min(timeAcc.current + delta, STEP * 3);
     while (timeAcc.current >= STEP - 1e-9) {
       timeAcc.current -= STEP;
-      simTime.current = stepCloth(cloth, physics, wind, normals, simTime.current);
+      simTime.current = stepCloth(cloth, physics, wind, simTime.current);
     }
 
     const attr = geom.attributes.position as THREE.BufferAttribute;

@@ -62,6 +62,7 @@ export function useClothDrag(
     cloth.pos[k] = cloth.prev[k] = d.point.x;
     cloth.pos[k + 1] = cloth.prev[k + 1] = d.point.y;
     cloth.pos[k + 2] = cloth.prev[k + 2] = d.point.z;
+    cloth.vel[k] = cloth.vel[k + 1] = cloth.vel[k + 2] = 0;
   };
 
   const onPointerUp = (e: ThreeEvent<PointerEvent>) => {

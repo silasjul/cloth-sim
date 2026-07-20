@@ -43,10 +43,10 @@ export const CLOTH_PRESETS: Record<ClothPresetId, ClothPreset> = {
     sheenRoughness: 0.6,
     sheenColor: '#ffffff',
     physics: {
-      gravity: 9.81,
-      damping: 0.008,
-      stiffness: 7,
+      weight: 0.25,
+      stiffness: 0.92,
       bend: 0.35,
+      drag: 0.35,
     },
     wind: {
       strength: 2.5,
@@ -68,10 +68,10 @@ export const CLOTH_PRESETS: Record<ClothPresetId, ClothPreset> = {
     sheenRoughness: 0.25,
     sheenColor: '#fff4e8',
     physics: {
-      gravity: 9.81,
-      damping: 0.003,
-      stiffness: 9,
+      weight: 0.1,
+      stiffness: 0.95,
       bend: 0.08,
+      drag: 0.2,
     },
     wind: {
       strength: 3.5,
@@ -96,10 +96,10 @@ export const CLOTH_PRESETS: Record<ClothPresetId, ClothPreset> = {
     sheenRoughness: 0.9,
     sheenColor: '#e8dcc2',
     physics: {
-      gravity: 9.81,
-      damping: 0.02,
-      stiffness: 10,
+      weight: 0.45,
+      stiffness: 0.98,
       bend: 0.7,
+      drag: 0.45,
     },
     wind: {
       strength: 1.6,
@@ -125,10 +125,10 @@ export const CLOTH_PRESETS: Record<ClothPresetId, ClothPreset> = {
     clearcoat: 0.25,
     clearcoatRoughness: 0.45,
     physics: {
-      gravity: 9.81,
-      damping: 0.03,
-      stiffness: 14,
-      bend: 1,
+      weight: 0.9,
+      stiffness: 1,
+      bend: 0.95,
+      drag: 0.55,
     },
     wind: {
       strength: 0.9,
